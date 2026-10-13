@@ -1,22 +1,22 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lead Hunter — Prospecção de leads</title><meta name="description" content="Encontre estabelecimentos e acompanhe sua carteira de clientes."><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"><style>:root {
- --background: oklch(.977 .003 165); --foreground: oklch(.24 .018 165); --card: oklch(1 0 0);
- --primary: oklch(.48 .115 165); --primary-foreground: oklch(1 0 0); --secondary: oklch(.96 .004 165);
- --accent: oklch(.947 .026 164); --muted-foreground: oklch(.48 .015 165); --border: oklch(.90 .006 165);
- --destructive: oklch(.51 .19 25); --warning: oklch(.50 .11 65); --warning-soft: oklch(.97 .027 85);
- --info: oklch(.49 .14 251); --info-soft: oklch(.95 .02 248);
- --success: oklch(.47 .12 154); --success-soft: oklch(.95 .032 153);
- --portfolio: oklch(.49 .13 302); --portfolio-soft: oklch(.95 .019 300);
- --shadow-soft: 0 2px 5px oklch(.2 .02 165 / .025); --overlay: oklch(1 0 0 / .92);
+ --background: oklch(.945 .007 240); --foreground: oklch(.25 .03 250); --card: oklch(.975 .004 240);
+ --primary: oklch(.50 .12 238); --primary-foreground: oklch(.985 .003 240); --secondary: oklch(.93 .008 240);
+ --accent: oklch(.92 .035 232); --muted-foreground: oklch(.47 .025 245); --border: oklch(.87 .011 240);
+ --destructive: oklch(.51 .19 25); --warning: oklch(.50 .11 65); --warning-soft: oklch(.94 .04 85);
+ --info: oklch(.47 .15 268); --info-soft: oklch(.93 .035 268);
+ --success: oklch(.47 .12 154); --success-soft: oklch(.93 .04 153);
+ --portfolio: oklch(.49 .13 310); --portfolio-soft: oklch(.93 .03 310);
+ --shadow-soft: 0 2px 5px oklch(.2 .03 245 / .05); --overlay: oklch(.975 .004 240 / .92); --fish: oklch(.72 .15 55);
 }
 .dark {
- --background: oklch(.18 .008 165); --foreground: oklch(.94 .004 165); --card: oklch(.225 .009 165);
- --primary: oklch(.73 .14 165); --primary-foreground: oklch(.19 .02 165); --secondary: oklch(.26 .01 165);
- --accent: oklch(.29 .035 165); --muted-foreground: oklch(.72 .01 165); --border: oklch(.33 .01 165);
+ --background: oklch(.18 .022 250); --foreground: oklch(.94 .008 245); --card: oklch(.225 .024 250);
+ --primary: oklch(.76 .11 230); --primary-foreground: oklch(.19 .03 250); --secondary: oklch(.265 .024 250);
+ --accent: oklch(.30 .055 245); --muted-foreground: oklch(.72 .018 245); --border: oklch(.34 .022 250);
  --destructive: oklch(.75 .16 25); --warning: oklch(.79 .11 65); --warning-soft: oklch(.29 .025 65);
- --info: oklch(.77 .10 251); --info-soft: oklch(.29 .025 251);
+ --info: oklch(.78 .10 268); --info-soft: oklch(.29 .03 268);
  --success: oklch(.78 .12 154); --success-soft: oklch(.29 .035 154);
- --portfolio: oklch(.78 .10 302); --portfolio-soft: oklch(.29 .025 302); --overlay: oklch(.225 .009 165 / .94);
+ --portfolio: oklch(.78 .10 310); --portfolio-soft: oklch(.29 .025 310); --overlay: oklch(.225 .024 250 / .94); --fish: oklch(.78 .13 60);
 }
 * { box-sizing: border-box; border-color: var(--border); letter-spacing: 0; }
 body { margin:0; background:var(--background); color:var(--foreground); font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; }
@@ -125,6 +125,25 @@ button { cursor:pointer; } svg { flex-shrink:0; }
  .dash-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
  .dash-card{padding:18px 16px}.dash-field{min-width:100%}.seg{width:100%}.seg-btn{flex:1}
 }
+
+/* ===== Loading: peixinho sendo pescado ===== */
+.fish-scene{display:block;width:200px;max-width:100%;height:auto}
+.fish-loading{gap:4px}
+.fs-reel{animation:fs-reel 2.8s ease-in-out infinite}
+.fs-line{transform-origin:112px 30px;animation:fs-line 2.8s ease-in-out infinite}
+.fs-wig{transform-origin:0 0;animation:fs-wig .5s ease-in-out infinite alternate}
+.fs-wave{animation:fs-wave 2.4s linear infinite}.fs-wave-back{animation-duration:3.8s;animation-direction:reverse}
+.fs-drop{opacity:0;animation:fs-drop 2.8s ease-out infinite}
+.fs-bubble{opacity:0;animation:fs-bubble 2.2s ease-in infinite}.fs-b2{animation-delay:1.1s}
+@keyframes fs-reel{0%,100%{transform:translateY(14px)}45%,58%{transform:translateY(-34px)}}
+@keyframes fs-line{0%,100%{transform:scaleY(1.25)}45%,58%{transform:scaleY(.393)}}
+@keyframes fs-wig{from{transform:rotate(70deg)}to{transform:rotate(100deg)}}
+@keyframes fs-wave{to{transform:translateX(-100px)}}
+@keyframes fs-drop{0%,12%{opacity:0;transform:translate(0,0)}20%{opacity:.9;transform:translate(var(--dx),-14px)}32%{opacity:0;transform:translate(calc(var(--dx)*1.4),2px)}78%{opacity:0;transform:translate(0,0)}86%{opacity:.9;transform:translate(var(--dx),-12px)}96%,100%{opacity:0;transform:translate(calc(var(--dx)*1.4),2px)}}
+@keyframes fs-bubble{0%{transform:translateY(0);opacity:0}20%{opacity:.75}100%{transform:translateY(-22px);opacity:0}}
+.search-loader{position:fixed;top:88px;right:24px;z-index:60;width:272px;padding:12px 16px 14px;background:var(--card);border:1px solid var(--border);border-radius:12px;box-shadow:0 14px 34px oklch(.2 .04 245 / .2);pointer-events:none}
+.search-loader .fish-scene{width:100%}
+@media(max-width:600px){.search-loader{top:72px;right:12px;left:12px;width:auto;max-width:340px;margin:0 auto}}
 </style></head><body><main><!--$--><div class="workspace"><aside aria-label="Navegação principal" class="sidebar"><div class="brand"><div class="brand-mark"><svg aria-hidden="true" class="lucide lucide-fish" fill="none" height="25" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="25" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"></path><path d="M18 12v.5"></path><path d="M16 17.93a9.77 9.77 0 0 1 0-11.86"></path><path d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33"></path><path d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"></path><path d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"></path></svg></div><div><div class="brand-name">Lead Hunter<span class="text-primary">.</span></div><div class="brand-sub">CONEXÕES QUE GERAM NEGÓCIOS</div></div></div><div class="nav-scroll">
 <nav aria-labelledby="capWork"><div class="nav-caption" id="capWork">ÁREA DE TRABALHO</div><a class="nav-link" data-view="prospeccao" href="#prospeccao" title="Prospecção" aria-current="page"><svg aria-hidden="true" class="lucide lucide-target" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg><span class="nav-label">Prospecção</span><span class="nav-dot"></span></a></nav>
 <nav aria-labelledby="capCart"><div class="nav-caption" id="capCart">MINHA CARTEIRA</div><a class="nav-link" data-view="trat" href="#em-tratativa" title="Em tratativa"><svg aria-hidden="true" class="lucide lucide-clock3 lucide-clock-3" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6h4"></path></svg><span class="nav-label">Em tratativa</span><span class="nav-count" id="nTrat">0</span></a><a class="nav-link" data-view="cli" href="#clientes-captados" title="Clientes captados"><svg aria-hidden="true" class="lucide lucide-user-check" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="m16 11 2 2 4-4"></path><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg><span class="nav-label">Clientes captados</span><span class="nav-count" id="nCli">0</span></a><a class="nav-link" data-view="carteira" href="#ja-na-carteira" title="Já na carteira"><svg aria-hidden="true" class="lucide lucide-briefcase-business" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M12 12h.01"></path><path d="M16 6V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path><path d="M22 13a18.15 18.15 0 0 1-20 0"></path><rect height="14" rx="2" width="20" x="2" y="6"></rect></svg><span class="nav-label">Já na carteira</span><span class="nav-count" id="nCarteira">0</span></a><a class="nav-link" data-view="semret" href="#sem-retorno" title="Sem retorno"><svg aria-hidden="true" class="lucide lucide-circle-question-mark" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg><span class="nav-label">Sem retorno</span><span class="nav-count" id="nSemRet">0</span></a></nav>
@@ -137,7 +156,7 @@ button { cursor:pointer; } svg { flex-shrink:0; }
 <div class="dash-card"><h2>Detalhamento por período</h2><div class="table-shell"><div class="tablewrap dash-tablewrap" role="region" aria-label="Tabela de proporções por período" tabindex="0"><table class="dash-table"><thead><tr><th scope="col">Período</th><th scope="col">Total</th><th scope="col">Em tratativa</th><th scope="col">Sem retorno</th><th scope="col">Clientes captados</th><th scope="col">Já na carteira</th></tr></thead><tbody id="dashTbody"></tbody><tfoot id="dashTfoot"></tfoot></table></div></div></div>
 <p class="dash-note" id="dashNote"></p>
 </section>
-<footer class="page-footer"><span class="footer-brand"><svg aria-hidden="true" class="lucide lucide-fish" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"></path><path d="M18 12v.5"></path><path d="M16 17.93a9.77 9.77 0 0 1 0-11.86"></path><path d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33"></path><path d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"></path><path d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"></path></svg>Lead Hunter · Prospecção inteligente</span><span>Feito para conectar oportunidades.</span></footer></div><div class="toast" id="toast" role="status"></div></div><!--/$--></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+<footer class="page-footer"><span class="footer-brand"><svg aria-hidden="true" class="lucide lucide-fish" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 12c.94-3.46 4.94-6 8.5-6 3.56 0 6.06 2.54 7 6-.94 3.47-3.44 6-7 6s-7.56-2.53-8.5-6Z"></path><path d="M18 12v.5"></path><path d="M16 17.93a9.77 9.77 0 0 1 0-11.86"></path><path d="M7 10.67C7 8 5.58 5.97 2.73 5.5c-1 1.5-1 5 .23 6.5-1.24 1.5-1.24 5-.23 6.5C5.58 18.03 7 16 7 13.33"></path><path d="M10.46 7.26C10.2 5.88 9.17 4.24 8 3h5.8a2 2 0 0 1 1.98 1.67l.23 1.4"></path><path d="m16.01 17.93-.23 1.4A2 2 0 0 1 13.8 21H9.5a5.96 5.96 0 0 0 1.49-3.98"></path></svg>Lead Hunter · Prospecção inteligente</span><span>Feito para conectar oportunidades.</span></footer></div><div aria-live="polite" class="search-loader is-off" id="searchLoader" role="status"></div><div class="toast" id="toast" role="status"></div></div><!--/$--></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
 const SUPABASE_URL="https://xzlxyyzdozvpetcqjmhv.supabase.co";
 const SUPABASE_KEY="sb_publishable_sB7MVLJhTmgCBvcIBznq5A_-P43B6re";
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
@@ -146,8 +165,25 @@ let placesLib=null,googleReady=false,leads=[];
 const PAGE_SIZE=20;let visibleCount=PAGE_SIZE;let isFirstLoad=true;
 const $=id=>document.getElementById(id);$("apiKey").value=localStorage.getItem("ledHunterGoogleKey")||"";
 
+const FISH_SCENE='<svg class="fish-scene" viewBox="0 0 200 150" role="img" aria-label="Peixe sendo pescado" xmlns="http://www.w3.org/2000/svg">'
++'<path d="M6 14 L112 30" stroke="var(--foreground)" stroke-width="3" stroke-linecap="round" fill="none" opacity=".7"/>'
++'<circle cx="24" cy="17" r="4.5" fill="none" stroke="var(--foreground)" stroke-width="2" opacity=".7"/>'
++'<path class="fs-wave fs-wave-back" d="M0 112 q25 -9 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 V150 H0 Z" fill="var(--primary)" opacity=".28"/>'
++'<line class="fs-line" x1="112" y1="30" x2="112" y2="86" stroke="var(--foreground)" stroke-width="1.3" opacity=".65"/>'
++'<g class="fs-reel"><g transform="translate(112 86)"><path d="M0 0 V6 q0 5 -5 5" fill="none" stroke="var(--foreground)" stroke-width="1.5" stroke-linecap="round" opacity=".7"/>'
++'<g class="fs-wig"><ellipse cx="17" cy="0" rx="17" ry="9" fill="var(--fish)"/><path d="M31 0 L46 -10 Q41 0 46 10 Z" fill="var(--fish)"/><path d="M13 -8 q5 -8 11 -7 q-2 4 -3 7 z" fill="var(--fish)" opacity=".8"/><circle cx="7" cy="-2.5" r="1.9" fill="var(--foreground)"/><path d="M11 -5 q-2.5 5 0 10" fill="none" stroke="var(--foreground)" stroke-width="1" opacity=".35"/></g></g></g>'
++'<g fill="var(--primary)"><circle class="fs-drop" style="--dx:-9px" cx="106" cy="108" r="2.2"/><circle class="fs-drop" style="--dx:0px;animation-delay:.05s" cx="113" cy="106" r="2.6"/><circle class="fs-drop" style="--dx:9px;animation-delay:.1s" cx="120" cy="108" r="2.2"/></g>'
++'<path class="fs-wave fs-wave-front" d="M0 118 q25 -9 50 0 t50 0 t50 0 t50 0 t50 0 t50 0 V150 H0 Z" fill="var(--primary)" opacity=".5"/>'
++'<circle class="fs-bubble" cx="70" cy="140" r="2" fill="var(--card)"/><circle class="fs-bubble fs-b2" cx="150" cy="138" r="1.6" fill="var(--card)"/>'
++'</svg>';
 function fishLoadingHTML(msg){
- return '<div class="fish-loading"><div class="stage"><div class="water"></div><div class="fish">🐟</div><div class="splash">💦</div></div><span class="label">'+esc(msg||"Carregando...")+'</span></div>';
+ return '<div class="fish-loading">'+FISH_SCENE+'<span class="label">'+esc(msg||"Carregando...")+'</span></div>';
+}
+function setSearchLoading(on,msg){
+ const el=$("searchLoader");
+ if(!on){el.classList.add("is-off");return}
+ if(el.classList.contains("is-off")||!el.querySelector(".label")){el.innerHTML=fishLoadingHTML(msg);el.classList.remove("is-off")}
+ else el.querySelector(".label").textContent=msg||"Carregando..."; // só troca o texto: a animação do peixe não reinicia
 }
 function setTableLoading(on,msg){
  const ov=$("loadingOverlay");
@@ -219,21 +255,24 @@ async function searchOne(q){return (await placesLib.Place.searchByText({textQuer
 async function limparLeadsSemContatoForaDaBusca(idsAtuais){
  if(!idsAtuais.length)return;
  try{
-  setTableLoading(true,"Limpando leads antigos sem contato...");
+  setSearchLoading(true,"Limpando leads antigos sem contato...");
   const idsCsv="("+idsAtuais.map(id=>`"${String(id).replace(/"/g,'""')}"`).join(",")+")";
   const{error}=await sb.from("leads").delete().or("status.is.null,status.eq.nao").not("place_id","in",idsCsv);
   if(error)console.error("Erro ao limpar leads antigos sem contato",error);
  }catch(e){console.error(e)}
 }
+let searching=false;
 async function searchGoogle(){
  if(!googleReady){await connectGoogle();if(!googleReady)return}
+ if(searching){showToast("Já existe uma pesquisa em andamento");return}
+ searching=true;
  visibleCount=PAGE_SIZE;
- setTableLoading(true,"Pesquisando estabelecimentos...");
+ setSearchLoading(true,"Pesquisando estabelecimentos...");
  try{
   const qs=queries(),all=new Map();
-  for(let i=0;i<qs.length;i++){setMsg("searchStatus","Pesquisando "+(i+1)+" de "+qs.length+": "+esc(qs[i])+"...");setTableLoading(true,"Pesquisando "+(i+1)+" de "+qs.length+"...");for(const p of await searchOne(qs[i]))if(p.id)all.set(p.id,p)}
+  for(let i=0;i<qs.length;i++){setMsg("searchStatus","Pesquisando "+(i+1)+" de "+qs.length+": "+esc(qs[i])+"...");setSearchLoading(true,"Pesquisando "+(i+1)+" de "+qs.length+"...");for(const p of await searchOne(qs[i]))if(p.id)all.set(p.id,p)}
   const cat=$("category").value;
-  setTableLoading(true,"Consolidando resultados...");
+  setSearchLoading(true,"Consolidando resultados...");
   for(const p of all.values()){
    try{await p.fetchFields({fields:["displayName","formattedAddress","nationalPhoneNumber","websiteURI","types"]})}catch(_){}
    const old=leads.find(x=>x.place_id===p.id),nome=(typeof p.displayName==="string"?p.displayName:(p.displayName?.text||"")).trim();
@@ -242,9 +281,9 @@ async function searchGoogle(){
   }
   await limparLeadsSemContatoForaDaBusca(Array.from(all.keys()));
   await loadLeads();
-  $("clock").textContent="Última pesquisa: "+new Date().toLocaleString("pt-BR");setMsg("searchStatus",all.size+" estabelecimentos encontrados e consolidados.",true)
+  $("clock").textContent="Última pesquisa: "+new Date().toLocaleString("pt-BR");setMsg("searchStatus",all.size+" estabelecimentos encontrados e consolidados.",true);showToast("✓ "+all.size+" estabelecimentos encontrados")
  }catch(e){setMsg("searchStatus","✕ Erro no Google Places: "+esc(e.message))}
- finally{setTableLoading(false)}
+ finally{setSearchLoading(false);searching=false}
 }
 // Filtro interno de concorrentes: não aparece para o usuário.
 const INTERNAL_COMPETITOR_TERMS = [
